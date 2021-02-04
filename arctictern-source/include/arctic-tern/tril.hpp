@@ -44,7 +44,7 @@
 #ifndef ARCTICTERN_UNCERTAINTY_HPP
 #define ARCTICTERN_UNCERTAINTY_HPP
 
-#include "arctic-tern/uncertainty.hpp"
+#include "arctictern/uncertainty.hpp"
 
 class tril {
 protected:

@@ -1,14 +1,14 @@
 Arctic Tern
 ========================================
 
-<img src=docs/source/arctic-tern-logo.svg width=300vw/>
+<img src=docs/source/arctictern-logo.svg width=300vw/>
 
-**Unicode, naturally.**
+**Maybe, definitely.**
 
-Arctic Tern is a string class for C++ with full Unicode (UTF-8) support and
-seamless compatibility with std::string and C-style strings.
+Arctic Tern provides a primitive trilean data type -- `tril` -- which
+enables you to write C++ code with simple and unsurprising ternary logic.
 
-See the [official project page](https://mousepawmedia.com/arctic-tern).
+See the [official project page](https://mousepawmedia.com/arctictern).
 
 > Arctic Tern was originally part of PawLIB.
 
@@ -16,9 +16,6 @@ Authors
 ----------------------------------------
 
 * Jason C. McDonald
-* Scott Taylor
-* Jarek Thomas
-* Bowen Volwiler
 
 Dependencies
 ----------------------------------------
@@ -33,7 +30,7 @@ on how to build Arctic Tern, Arctic Tern Tester, and the documentation.
 
 The Ready-To-Use version of Arctic Tern only contains the folder `include`.
 You can find the full source repository on
-[GitHub](https://github.com/mousepawmedia/arctic-tern).
+[GitHub](https://github.com/mousepawmedia/arctictern).
 
 Contributions
 ----------------------------------------

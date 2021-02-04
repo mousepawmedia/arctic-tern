@@ -43,7 +43,7 @@ cmake_minimum_required(VERSION 3.1)
 
 # CHANGEME: Name your project here
 project("Arctic Tern Tester")
-set(TARGET_NAME "arctic-tern-tester")
+set(TARGET_NAME "arctictern-tester")
 
 message("Using ${CONFIG_FILENAME}.config")
 include(${CMAKE_HOME_DIRECTORY}/../${CONFIG_FILENAME}.config)
@@ -132,7 +132,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../bin/$<CONF
 include_directories(include)
 
 # CHANGEME: Include headers of dependencies.
-include_directories(../arctic-tern-source/include)
+include_directories(../arctictern-source/include)
 include_directories(${PAWLIB_DIR}/include)
 include_directories(${EVENTPP_DIR}/include)
 
