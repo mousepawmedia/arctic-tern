@@ -53,73 +53,70 @@ class tril;
  * or assigning a tril with an uncertainty does not affect the tril's
  * boolean value. */
 class uncertainty {
-  /* tril has to be able to access protected data of
-   * uncertainty instances. */
-  friend class tril;
+	/* tril has to be able to access protected data of
+	 * uncertainty instances. */
+	friend class tril;
 
 protected:
-  bool data;
+	bool data;
 
 public:
-  /** Construct an uncertainty.
-   * \param the initial value (default true) */
-  explicit uncertainty(bool u = true) noexcept : data(u) {}
+	/** Construct an uncertainty.
+	 * \param the initial value (default true) */
+	explicit uncertainty(bool u = true) noexcept : data(u) {}
 
-  /** Returns TRUE if the certainty is MAYBE. */
-  friend bool operator~(const uncertainty &rhs) noexcept {
-    // Return the certainty of rhs.
-    return (rhs.data);
-  }
+	/** Returns TRUE if the certainty is MAYBE. */
+	friend bool operator~(const uncertainty &rhs) noexcept {
+		// Return the certainty of rhs.
+		return (rhs.data);
+	}
 
-  friend bool operator==(const uncertainty &lhs,
-                         const uncertainty &rhs) noexcept {
-    return (lhs.data == rhs.data);
-  }
+	friend bool operator==(const uncertainty &lhs,
+												 const uncertainty &rhs) noexcept {
+		return (lhs.data == rhs.data);
+	}
 
-  friend bool operator!=(const uncertainty &lhs,
-                         const uncertainty &rhs) noexcept {
-    return !(lhs == rhs);
-  }
+	friend bool operator!=(const uncertainty &lhs,
+												 const uncertainty &rhs) noexcept {
+		return !(lhs == rhs);
+	}
 
-  friend bool operator==(const uncertainty &, const bool &) noexcept {
-    return false;
-  }
+	friend bool operator==(const uncertainty &, const bool &) noexcept {
+		return false;
+	}
 
-  friend bool operator!=(const uncertainty &, const bool &) noexcept {
-    return false;
-  }
+	friend bool operator!=(const uncertainty &, const bool &) noexcept {
+		return false;
+	}
 
-  friend bool operator==(const bool &lhs, const uncertainty &rhs) noexcept {
-    return (rhs == lhs);
-  }
+	friend bool operator==(const bool &lhs, const uncertainty &rhs) noexcept {
+		return (rhs == lhs);
+	}
 
-  friend bool operator!=(const bool &lhs, const uncertainty &rhs) noexcept {
-    return !(rhs == lhs);
-  }
+	friend bool operator!=(const bool &lhs, const uncertainty &rhs) noexcept {
+		return !(rhs == lhs);
+	}
 
-  /* We see these again in the `tril` class. We're repeating the
-   * declaration here to ensure these functions are friends of
-   * BOTH classes. */
-  friend bool operator==(const tril &, const uncertainty &) noexcept;
-  friend bool operator!=(const tril &, const uncertainty &) noexcept;
+	/* We see these again in the `tril` class. We're repeating the
+	 * declaration here to ensure these functions are friends of
+	 * BOTH classes. */
+	friend bool operator==(const tril &, const uncertainty &) noexcept;
+	friend bool operator!=(const tril &, const uncertainty &) noexcept;
 
-  friend bool operator==(const uncertainty &lhs, const tril &rhs) noexcept {
-    return (rhs == lhs);
-  }
+	friend bool operator==(const uncertainty &lhs, const tril &rhs) noexcept {
+		return (rhs == lhs);
+	}
 
-  friend bool operator!=(const uncertainty &lhs, const tril &rhs) noexcept {
-    return (rhs != lhs);
-  }
+	friend bool operator!=(const uncertainty &lhs, const tril &rhs) noexcept {
+		return (rhs != lhs);
+	}
 
-  friend std::ostream &operator<<(std::ostream &output, const uncertainty &in) {
-    output << (in.data ? "Uncertain" : "Certain");
-    return output;
-  }
+	friend std::ostream &operator<<(std::ostream &output, const uncertainty &in) {
+		output << (in.data ? "Uncertain" : "Certain");
+		return output;
+	}
 
-  ~uncertainty() = default;
+	~uncertainty() = default;
 };
-
-// We offer this constant to go alongside "true" and "false".
-const uncertainty maybe = uncertainty();
 
 #endif // ARCTICTERN_UNCERTAINTY_HPP

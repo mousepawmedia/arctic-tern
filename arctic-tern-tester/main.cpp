@@ -45,7 +45,7 @@
 #include <string>
 
 // TODO: Switch to Goldilocks 2.0 and IOSqueak (pending their release)
-#include "pawlib/goldilocks_shell.hpp"
+#include "goldilocks/shell.hpp"
 
 #include "arctic-tern/tests/tril_tests.hpp"
 
@@ -58,36 +58,36 @@ void test_code() {}
 /////// WARNING: DO NOT ALTER BELOW THIS POINT! ///////
 
 int main(int argc, char *argv[]) {
-  (void)argc;
-  (void)argv;
-  // Return code.
-  int r = 0;
+	(void)argc;
+	(void)argv;
+	// Return code.
+	int r = 0;
 
-  test_code();
+	test_code();
 
-  // Set up signal handling.
-  ioc.configure_echo(IOEchoMode::cout);
+	// Set up signal handling.
+	ioc.configure_echo(IOEchoMode::cout);
 
-  GoldilocksShell *shell = new GoldilocksShell(">> ");
-  shell->register_suite<TestSuite_Onechar>("O-sB1");
-  shell->register_suite<TestSuite_Onestring>("O-sB2");
+	GoldilocksShell *shell = new GoldilocksShell(">> ");
+	shell->register_suite<TestSuite_Onechar>("O-sB1");
+	shell->register_suite<TestSuite_Onestring>("O-sB2");
 
-  // If we got command-line arguments.
-  if (argc > 1) {
-    r = shell->command(argc, argv);
-  } else {
-    ioc << IOFormatTextAttr::bold << IOFormatTextFG::blue
-        << "===== Onestring Tester =====\n"
-        << IOCtrl::endl;
+	// If we got command-line arguments.
+	if (argc > 1) {
+		r = shell->command(argc, argv);
+	} else {
+		ioc << IOFormatTextAttr::bold << IOFormatTextFG::blue
+				<< "===== Onestring Tester =====\n"
+				<< IOCtrl::endl;
 
-    test_code();
+		test_code();
 
-    // Shift control to the interactive console.
-    shell->interactive();
-  }
+		// Shift control to the interactive console.
+		shell->interactive();
+	}
 
-  // Delete our GoldilocksShell.
-  delete shell;
+	// Delete our GoldilocksShell.
+	delete shell;
 
-  return r;
+	return r;
 }
