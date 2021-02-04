@@ -58,8 +58,8 @@ help:
 	$(ECHO) "  make cleanrelease    Clean up Arctic Tern and Tester Release."
 	$(ECHO) "  make docs            Generate HTML docs."
 	$(ECHO) "  make docs_pdf        Generate PDF docs."
-	$(ECHO) "  make arctictern       Build Arctic Tern as release."
-	$(ECHO) "  make arctictern       Build Arctic Tern as debug."
+	$(ECHO) "  make arctic-tern       Build Arctic Tern as release."
+	$(ECHO) "  make arctic-tern       Build Arctic Tern as debug."
 	$(ECHO) "  make tester          Build Arctic Tern Tester (+Arctic Tern) as release."
 	$(ECHO) "  make tester_debug    Build Arctic Tern Tester (+Arctic Tern) as debug."
 	$(ECHO) "  make all             Build everything."
@@ -81,12 +81,12 @@ help:
 	$(ECHO) "                  in the root of this repository."
 	$(ECHO) "  When unspecified, default.config will be used."
 	$(ECHO)
-	$(ECHO) "For other build options, see the 'make' command in 'docs/', 'arctictern-source/', and 'arctictern-tester/'."
+	$(ECHO) "For other build options, see the 'make' command in 'docs/', 'arctic-tern-source/', and 'arctic-tern-tester/'."
 .PHONY: help
 
 clean:
-	$(MAKE) clean -C arctictern-tester
-	$(RM_DIR) arctictern
+	$(MAKE) clean -C arctic-tern-tester
+	$(RM_DIR) arctic-tern
 	$(RM) tester_debug
 	$(RM) tester
 .PHONY: clean
@@ -96,12 +96,12 @@ cleanall: clean
 .PHONY: cleanall
 
 cleandebug:
-	$(MAKE) cleandebug -C arctictern-tester
+	$(MAKE) cleandebug -C arctic-tern-tester
 	$(RM) tester_debug
 .PHONY: cleandebug
 
 cleanrelease:
-	$(MAKE) cleanrelease -C arctictern-tester
+	$(MAKE) cleanrelease -C arctic-tern-tester
 	$(RM) tester
 .PHONY: cleanrelease
 
@@ -122,53 +122,53 @@ docs_pdf:
 	$(ECHO) "-------------"
 .PHONY: docs_pdf
 
-arctictern:
+arctic-tern:
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "Arctic Tern is in 'arctictern-source/include'."
+	$(ECHO) "Arctic Tern is in 'arctic-tern-source/include'."
 	$(ECHO) "-------------"
-.PHONY: arctictern
+.PHONY: arctic-tern
 
-arctictern:
+arctic-tern:
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO)  on "Arctic Tern is in 'arctictern-source/include'."
+	$(ECHO)  on "Arctic Tern is in 'arctic-tern-source/include'."
 	$(ECHO) "-------------"
-.PHONY: arctictern_debug
+.PHONY: arctic-tern_debug
 
-ready: arctictern
-	$(RM_DIR) arctictern
+ready: arctic-tern
+	$(RM_DIR) arctic-tern
 	$(ECHO) "Creating file structure..."
-	$(MK_DIR) arctictern
+	$(MK_DIR) arctic-tern
 	$(ECHO) "Copying Arctic Tern..."
-	$(CP_DIR) arctictern-source/include/ arctictern/include/
+	$(CP_DIR) arctic-tern-source/include/ arctic-tern/include/
 	$(ECHO) "Copying README and LICENSE..."
-	$(CP) README.md arctictern/README.md
-	$(CP) LICENSE.md arctictern/LICENSE.md
+	$(CP) README.md arctic-tern/README.md
+	$(CP) LICENSE.md arctic-tern/LICENSE.md
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "The library is in 'arctictern'."
+	$(ECHO) "The library is in 'arctic-tern'."
 	$(ECHO) "-------------"
 .PHONY: ready
 
-tester: arctictern
-	$(MAKE) release -C arctictern-tester
+tester: arctic-tern
+	$(MAKE) release -C arctic-tern-tester
 	$(RM) tester
-	$(LN) arctictern-tester/bin/Release/arctictern-tester tester
+	$(LN) arctic-tern-tester/bin/Release/arctic-tern-tester tester
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "Arctic Tern Tester is in 'arctictern-tester/bin/Release'."
+	$(ECHO) "Arctic Tern Tester is in 'arctic-tern-tester/bin/Release'."
 	$(ECHO) "The link './tester' has been created for convenience."
 	$(ECHO) "-------------"
 .PHONY: tester
 
-tester_debug: arctictern_debug
-	$(MAKE) debug -C arctictern-tester
+tester_debug: arctic-tern_debug
+	$(MAKE) debug -C arctic-tern-tester
 	$(RM) tester_debug
-	$(LN) arctictern-tester/bin/Debug/arctictern-tester tester_debug
+	$(LN) arctic-tern-tester/bin/Debug/arctic-tern-tester tester_debug
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "Arctic Tern Tester is in 'arctictern-tester/bin/Debug'."
+	$(ECHO) "Arctic Tern Tester is in 'arctic-tern-tester/bin/Debug'."
 	$(ECHO) "The link './tester_debug' has been created for convenience."
 	$(ECHO) "-------------"
 .PHONY: tester_debug

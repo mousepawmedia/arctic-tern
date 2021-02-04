@@ -47,7 +47,7 @@
 // TODO: Switch to Goldilocks 2.0 and IOSqueak (pending their release)
 #include "pawlib/goldilocks_shell.hpp"
 
-#include "arctictern/tests/tril_tests.hpp"
+#include "arctic-tern/tests/tril_tests.hpp"
 
 /** Temporary test code goes in this function ONLY.
  * All test code that is needed long term should be

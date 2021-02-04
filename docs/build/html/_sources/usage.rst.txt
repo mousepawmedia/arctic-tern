@@ -8,7 +8,7 @@ To include Trilean, use the following:
 
 ..  code-block:: c++
 
-    #include "arctictern/tril.hpp"
+    #include "arctic-tern/tril.hpp"
 
 "Maybe" Constant
 ===================================

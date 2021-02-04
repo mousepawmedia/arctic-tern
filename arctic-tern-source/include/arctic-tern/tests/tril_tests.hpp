@@ -42,7 +42,7 @@
 #ifndef ARCTICTERN_TRIL_TESTS_HPP
 #define ARCTICTERN_TRIL_TESTS_HPP
 
-#include "arctictern/tril.hpp"
+#include "arctic-tern/tril.hpp"
 #include "pawlib/goldilocks.hpp"
 
 // P-tB010[1-3]

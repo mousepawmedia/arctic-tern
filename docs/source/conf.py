@@ -83,7 +83,7 @@ html_theme_path = [".themes", ]
 # documentation.
 #
 # html_theme_options = {}
-html_logo = "arctictern-logo.png"
+html_logo = "arctic-tern-logo.png"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -141,7 +141,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'arctictern', u'Onestring Documentation',
+    (master_doc, 'arctic-tern', u'Onestring Documentation',
      [author], 1)
 ]
 
