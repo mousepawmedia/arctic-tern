@@ -16,6 +16,52 @@
 # file name (before the .config). For example, passing the argument
 # "-DCONFIG_FILENAME=foo" would build using "foo.config".
 
+
+##### EVENTPP #####
+#
+# This sets the path to eventpp, which is used by the tester.
+#
+# The default is '${CMAKE_HOME_DIRECTORY}/../../eventpp/eventpp', which
+# assumes a copy of the Goldilocks git repository in the same directory as this
+# repository folder.
+#
+# 'make ready' would need to be run in that repository to build the library.
+
+set(EVENTPP_DIR
+	${CMAKE_HOME_DIRECTORY}/../../libdeps/libs
+)
+
+
+##### GOLDILOCKS #####
+#
+# This sets the path to Goldilocks, which is used by the tester.
+#
+# The default is '${CMAKE_HOME_DIRECTORY}/../../goldilocks/goldilocks', which
+# assumes a copy of the Goldilocks git repository in the same directory as this
+# repository folder.
+#
+# 'make ready' would need to be run in that repository to build the library.
+
+set(GOLDILOCKS_DIR
+	${CMAKE_HOME_DIRECTORY}/../../goldilocks/goldilocks
+)
+
+
+##### IOSQUEAK #####
+#
+# This sets the path to IOSqueak, which is used by the tester.
+#
+# The default is '${CMAKE_HOME_DIRECTORY}/../../iosqueak/iosqueak', which
+# assumes a copy of the Goldilocks git repository in the same directory as this
+# repository folder.
+#
+# 'make ready' would need to be run in that repository to build the library.
+
+set(IOSQUKAK_DIR
+	${CMAKE_HOME_DIRECTORY}/../../iosqueak/iosqueak
+)
+
+
 ##### LLVM LIBC++ #####
 #
 # This option asks the Clang compiler to use LLVM's libc++ library.

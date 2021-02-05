@@ -66,17 +66,16 @@ int main(int argc, char *argv[]) {
 	test_code();
 
 	// Set up signal handling.
-	ioc.configure_echo(IOEchoMode::cout);
+	channel.configure_echo(IOEchoMode::cout);
 
 	GoldilocksShell *shell = new GoldilocksShell(">> ");
-	shell->register_suite<TestSuite_Onechar>("O-sB1");
-	shell->register_suite<TestSuite_Onestring>("O-sB2");
+	shell->register_suite<TestSuite_Tril>("AT-sB1");
 
 	// If we got command-line arguments.
 	if (argc > 1) {
 		r = shell->command(argc, argv);
 	} else {
-		ioc << IOFormatTextAttr::bold << IOFormatTextFG::blue
+		channel << IOFormatTextAttr::bold << IOFormatTextFG::blue
 				<< "===== Onestring Tester =====\n"
 				<< IOCtrl::endl;
 
