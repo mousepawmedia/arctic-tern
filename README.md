@@ -1,7 +1,7 @@
 Arctic Tern
 ========================================
 
-<img src=docs/source/arctic-tern-logo.svg width=300vw/>
+<img src=docs/source/arctictern-logo.png width=300vw/>
 
 **Maybe, definitely.**
 
