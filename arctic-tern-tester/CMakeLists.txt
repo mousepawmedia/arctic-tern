@@ -132,10 +132,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../bin/$<CONF
 include_directories(include)
 
 # CHANGEME: Include headers of dependencies.
-include_directories(../arctic-tern-source/include)
-include_directories(${EVENTPP_DIR}/include)
-include_directories(${IOSQUEAK_DIR}/include)
 include_directories(${GOLDILOCKS_DIR}/include)
+include_directories(${IOSQUEAK_DIR}/include)
+include_directories(${EVENTPP_DIR}/include)
+include_directories(../arctic-tern-source/include)
 
 # CHANGEME: Include files to compile.
 add_executable(${TARGET_NAME}
