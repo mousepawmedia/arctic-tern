@@ -19,11 +19,6 @@ set(TARGET_NAME "arctic-tern-tester")
 set(ARTIFACT_TYPE "executable")
 
 # CHANGE: Find dynamic library dependencies.
-find_library(CAIRO_LIB cairo)
-find_path(CAIRO_INCLUDE_DIR cairo/cairo.h)
-
-find_library(SDL2_LIB SDL2)
-find_path(SDL2_INCLUDE_DIR SDL2/SDL.h)
 
 # CHANGE: Include headers of dependencies.
 set(INCLUDE_LIBS
