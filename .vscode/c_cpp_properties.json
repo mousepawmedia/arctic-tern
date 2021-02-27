@@ -3,11 +3,9 @@
         {
             "name": "Mac",
             "includePath": [
-                "/usr/include",
-                "/usr/local/include",
-                "${workspaceRoot}/../libdeps/libs/include/**",
-                "${workspaceRoot}/../goldilocks/goldilocks/include/**",
-                "${workspaceRoot}/arctic-tern-source/include/**"
+                "/usr/include/**",
+                "/usr/local/include/**",
+                "${workspaceRoot}/**"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -15,8 +13,6 @@
                 "path": [
                     "/usr/include",
                     "/usr/local/include",
-                    "${workspaceRoot}/../libdeps/libs/include",
-                    "${workspaceRoot}/../goldilocks/goldilocks/include",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
@@ -26,38 +22,31 @@
                 "/System/Library/Frameworks",
                 "/Library/Frameworks"
             ],
-            "compilerPath": "/usr/bin/clang",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++17"
         },
         {
             "name": "Linux",
             "includePath": [
-                "/usr/include/c++/**",
-                "/usr/include/x86_64-linux-gnu/**",
+                "/usr/include/**",
                 "/usr/local/include/**",
                 "/usr/lib/gcc/x86_64-linux-gnu/**",
-                "/usr/include/**",
-                "${workspaceRoot}/../libdeps/libs/include/**",
-                "${workspaceRoot}/../goldilocks/goldilocks/include/**",
-                "${workspaceRoot}/arctic-tern-source/include/**"
+                "${workspaceRoot}/**"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
             "browse": {
                 "path": [
-                    "/usr/include/c++",
-                    "/usr/include/x86_64-linux-gnu",
-                    "/usr/local/include",
                     "/usr/include",
-                    "${workspaceRoot}/../libdeps/libs/include",
-                    "${workspaceRoot}/../goldilocks/goldilocks/include",
+                    "/usr/local/include",
+                    "/usr/include/x86_64-linux-gnu",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             },
-            "compilerPath": "/usr/bin/clang-9",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++17"
         },
@@ -65,7 +54,7 @@
             "name": "Win32",
             "includePath": [
                 "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
-                "${workspaceRoot}"
+                "${workspaceRoot}/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -80,7 +69,7 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             },
-            "compilerPath": "/usr/bin/clang",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++17"
         }

@@ -1,11 +1,8 @@
 # Top Level Makefile (MousePaw Media Build System)
-# Version: 2.1.0
-# Tailored For: Arctic Tern
-#
-# Author(s): Jason C. McDonald
+# Version: 3.1.1
 
-# LICENSE (BSD-3-Clause)
-# Copyright (c) 2018 MousePaw Media.
+# LICENSE
+# Copyright (c) 2021 MousePaw Media.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -38,6 +35,21 @@
 # See https://www.mousepawmedia.com/developers for information
 # on how to contribute to our projects.
 
+# CHANGE: Project name
+PROJECT = Arctic Tern
+# CHANGE: Project base filename
+NAME = arctic-tern
+
+# CHANGE: Uncomment for header-only libraries.
+HEADER_ONLY=1
+
+# CHANGE: Source directory
+SOURCE = $(NAME)-source
+# CHANGE: Tester directory
+SOURCE = $(NAME)-tester
+# NOTE: If you only have one or the other,
+# 		replace this top-level Makefile with the inner makefile.
+
 MK_DIR = @cmake -E make_directory
 CH_DIR = @cmake -E chdir
 CP = @cmake -E copy
@@ -50,20 +62,20 @@ LN = @cmake -E create_symlink
 none: help
 
 help:
-	$(ECHO) "=== Arctic Tern 2.0 ==="
+	$(ECHO) "=== $(PROJECT) ==="
 	$(ECHO) "Select a build target:"
-	$(ECHO) "  make ready           Build Arctic Tern and bundles it for distribution."
-	$(ECHO) "  make clean           Clean up Arctic Tern and Tester."
-	$(ECHO) "  make cleandebug      Clean up Arctic Tern and Tester Debug."
-	$(ECHO) "  make cleanrelease    Clean up Arctic Tern and Tester Release."
-	$(ECHO) "  make docs            Generate HTML docs."
-	$(ECHO) "  make docs_pdf        Generate PDF docs."
-	$(ECHO) "  make arctic-tern       Build Arctic Tern as release."
-	$(ECHO) "  make arctic-tern       Build Arctic Tern as debug."
-	$(ECHO) "  make tester          Build Arctic Tern Tester (+Arctic Tern) as release."
-	$(ECHO) "  make tester_debug    Build Arctic Tern Tester (+Arctic Tern) as debug."
-	$(ECHO) "  make all             Build everything."
-	$(ECHO) "  make allfresh        Clean and rebuild everything."
+	$(ECHO) "  make ready         Build $(PROJECT) and bundles it for distribution."
+	$(ECHO) "  make clean         Clean up $(PROJECT) and Tester."
+	$(ECHO) "  make cleandebug    Clean up $(PROJECT) and Tester Debug."
+	$(ECHO) "  make cleanrelease  Clean up $(PROJECT) and Tester Release."
+	$(ECHO) "  make docs          Generate HTML docs."
+	$(ECHO) "  make docs_pdf      Generate PDF docs."
+	$(ECHO) "  make $(NAME)         Build $(PROJECT) as release."
+	$(ECHO) "  make $(NAME)_debug   Build $(PROJECT) as debug."
+	$(ECHO) "  make tester        Build $(PROJECT) Tester (+$(PROJECT)) as release."
+	$(ECHO) "  make tester_debug  Build $(PROJECT) Tester (+$(PROJECT)) as debug."
+	$(ECHO) "  make all           Build everything."
+	$(ECHO) "  make allfresh      Clean and rebuild everything."
 	$(ECHO)
 	$(ECHO) "Clang Sanitizers (requires Debug build and Clang.)"
 	$(ECHO) "  SAN=address     Use AddressSanitizer"
@@ -81,100 +93,115 @@ help:
 	$(ECHO) "                  in the root of this repository."
 	$(ECHO) "  When unspecified, default.config will be used."
 	$(ECHO)
-	$(ECHO) "For other build options, see the 'make' command in 'docs/', 'arctic-tern-source/', and 'arctic-tern-tester/'."
-.PHONY: help
+	$(ECHO) "For other build options, see the 'make' command in 'docs/', '$(NAME)-source/', '$(NAME)-tester/', and 'cpgf/build/'."
 
 clean:
-	$(MAKE) clean -C arctic-tern-tester
-	$(RM_DIR) arctic-tern
-	$(RM) tester_debug
+	$(MAKE) clean -C $(NAME)-source
+	$(MAKE) clean -C $(NAME)-tester
 	$(RM) tester
-.PHONY: clean
+	$(RM) tester_debug
+	$(RM_DIR) $(NAME)
 
 cleanall: clean
 	$(MAKE) clean -C docs
-.PHONY: cleanall
 
 cleandebug:
-	$(MAKE) cleandebug -C arctic-tern-tester
+	$(MAKE) cleandebug -C $(NAME)-source
+	$(MAKE) cleandebug -C $(NAME)-tester
 	$(RM) tester_debug
-.PHONY: cleandebug
 
 cleanrelease:
-	$(MAKE) cleanrelease -C arctic-tern-tester
+	$(MAKE) cleanrelease -C $(NAME)-source
+	$(MAKE) cleanrelease -C $(NAME)-tester
 	$(RM) tester
-.PHONY: cleanrelease
 
 docs:
-	$(RM_DIR) docs/build/html
 	$(MAKE) html -C docs
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
 	$(ECHO) "View docs at 'docs/build/html/index.html'."
 	$(ECHO) "-------------"
-.PHONY: docs
 
 docs_pdf:
 	$(MAKE) latexpdf -C docs
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "View docs at 'docs/build/latex/Arctic Tern.pdf'."
+	$(ECHO) "View docs at 'docs/build/latex/$(PROJECT).pdf'."
 	$(ECHO) "-------------"
-.PHONY: docs_pdf
 
-arctic-tern:
+$(NAME):
+ifdef $(HEADER_ONLY)
+	$(MAKE) release -C $(NAME)-source
+endif
+
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "Arctic Tern is in 'arctic-tern-source/include'."
-	$(ECHO) "-------------"
-.PHONY: arctic-tern
 
-arctic-tern:
+ifdef $(HEADER_ONLY)
+	$(ECHO) "$(PROJECT) is a header-only library in '$(NAME)-source/include."
+else
+	$(ECHO) "$(PROJECT) is in '$(NAME)-source/lib/Release'."
+endif
+
+	$(ECHO) "-------------"
+
+$(NAME)_debug:
+ifdef $(HEADER_ONLY)
+	$(MAKE) debug -C $(NAME)-source
+endif
+
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO)  on "Arctic Tern is in 'arctic-tern-source/include'."
-	$(ECHO) "-------------"
-.PHONY: arctic-tern_debug
 
-ready: arctic-tern
-	$(RM_DIR) arctic-tern
+ifdef $(HEADER_ONLY)
+	$(ECHO) "$(PROJECT) is a header-only library in '$(NAME)-source/include."
+else
+	$(ECHO) "$(PROJECT) is in '$(NAME)-source/lib/Debug'."
+endif
+
+	$(ECHO) "-------------"
+
+ready: $(NAME)
+	$(RM_DIR) $(NAME)
 	$(ECHO) "Creating file structure..."
-	$(MK_DIR) arctic-tern
-	$(ECHO) "Copying Arctic Tern..."
-	$(CP_DIR) arctic-tern-source/include/ arctic-tern/include/
-	$(ECHO) "Copying README and LICENSE..."
-	$(CP) README.md arctic-tern/README.md
-	$(CP) LICENSE.md arctic-tern/LICENSE.md
-	$(ECHO) "-------------"
-	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "The library is in 'arctic-tern'."
-	$(ECHO) "-------------"
-.PHONY: ready
+	$(MK_DIR) $(NAME)/lib
+	$(ECHO) "Copying $(PROJECT)..."
+	$(CP_DIR) $(NAME)-source/include/ $(NAME)/include/
+ifdef $(HEADER_ONLY)
+	$(CP) $(NAME)-source/lib/Release/lib$(NAME).a $(NAME)/lib/lib$(NAME).a
+endif
 
-tester: arctic-tern
-	$(MAKE) release -C arctic-tern-tester
-	$(RM) tester
-	$(LN) arctic-tern-tester/bin/Release/arctic-tern-tester tester
+	$(ECHO) "Copying README and LICENSE..."
+	$(CP) README.md $(NAME)/README.md
+	$(CP) LICENSE.md $(NAME)/LICENSE.md
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "Arctic Tern Tester is in 'arctic-tern-tester/bin/Release'."
+	$(ECHO) "The library is in '$(NAME)'."
+	$(ECHO) "-------------"
+
+tester: $(NAME)
+	$(MAKE) release -C $(NAME)-tester
+	$(RM) tester
+	$(LN) $(NAME)-tester/bin/Release/$(NAME)-tester tester
+	$(ECHO) "-------------"
+	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
+	$(ECHO) "$(PROJECT) Tester is in '$(NAME)-tester/bin/Release'."
 	$(ECHO) "The link './tester' has been created for convenience."
 	$(ECHO) "-------------"
-.PHONY: tester
 
-tester_debug: arctic-tern_debug
-	$(MAKE) debug -C arctic-tern-tester
+
+tester_debug: $(NAME)_debug
+	$(MAKE) debug -C $(NAME)-tester
 	$(RM) tester_debug
-	$(LN) arctic-tern-tester/bin/Debug/arctic-tern-tester tester_debug
+	$(LN) $(NAME)-tester/bin/Debug/$(NAME)-tester tester_debug
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "Arctic Tern Tester is in 'arctic-tern-tester/bin/Debug'."
+	$(ECHO) "$(PROJECT) Tester is in '$(NAME)-tester/bin/Debug'."
 	$(ECHO) "The link './tester_debug' has been created for convenience."
 	$(ECHO) "-------------"
-.PHONY: tester_debug
 
 all: docs tester
-.PHONY: all
 
 allfresh: cleanall all
-.PHONY: allfresh
+
+.PHONY: all allfresh clean cleanall cleandebug cleanrelease docs docs_pdf $(NAME) $(NAME)_debug ready tester tester_debug
