@@ -1,5 +1,5 @@
 # Outer Makefile (MousePaw Media Build System)
-# Version: 3.2.0
+# Version: 3.3.0
 
 # LICENSE
 # Copyright (c) 2021 MousePaw Media.
@@ -159,9 +159,9 @@ ifneq ($(HEADER_ONLY),1)
 	$(MK_DIR) $(READY_DIR)/lib
 endif
 	$(ECHO) "Copying $(LIB_PROJECT)..."
-	$(CP_DIR) $(LIB_SRC)/include/ $(LIB_NAME)/include/
+	$(CP_DIR) $(LIB_SRC)/include/ $(READY_DIR)/include/
 ifneq ($(HEADER_ONLY),1)
-	$(CP) $(LIB_SRC)/lib/Release/lib$(LIB_NAME).a $(LIB_NAME)/lib/lib$(LIB_NAME).a
+	$(CP) $(LIB_SRC)/lib/Release/lib$(LIB_NAME).a $(READY_DIR)/lib/lib$(LIB_NAME).a
 endif
 
 	$(ECHO) "Copying README and LICENSE..."
@@ -193,8 +193,8 @@ $(EXE_NICKNAME)_debug: $(LIB_NAME)_debug
 	$(ECHO) "The link './$(EXE_NICKNAME)_debug' has been created for convenience."
 	$(ECHO) "-------------"
 
-all: docs tester
+all: docs $(EXE_NICKNAME)
 
 allfresh: cleanall all
 
-.PHONY: all allfresh clean cleanall cleandebug cleanrelease docs docs_pdf $(LIB_NAME) $(LIB_NAME)_debug ready $(EXE_NAME) $(EXE_NAME)_debug
+.PHONY: all allfresh clean cleanall cleandebug cleanrelease docs docs_pdf $(LIB_NAME) $(LIB_NAME)_debug ready $(EXE_NICKNAME) $(EXE_NICKNAME)_debug
